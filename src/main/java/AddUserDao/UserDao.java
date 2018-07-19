@@ -37,13 +37,14 @@ public class UserDao {
     public int loadUsers() {
         File folder = new File("Resources/Users");
         System.out.println(folder.getAbsolutePath());
-        File[] listOfFiles = folder.listFiles();
-
+        String[] listOfFiles = folder.list();
+        System.out.println(listOfFiles);
 
         userList = new ArrayList<>();
         if (listOfFiles != null) {
-            for (File x : listOfFiles) {
-                if (x.isFile()) {
+            for (String x : listOfFiles) {
+                if (x.isEmpty()) {
+                    System.out.println(x);
                     try {
                         FileInputStream fileInputStream = new FileInputStream(x);
                         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);

@@ -2,8 +2,8 @@ package AddUser.Implementation;
 
 public enum ReturnState {
 
-    SUCCESS("1"),
-    FAILED("2");
+    SUCCESS("Success"),
+    FAILED("Failed");
 
     private String state;
 

@@ -29,7 +29,6 @@ public class UserController {
 
         System.out.println(name+":"+lastName+":"+password);
         if (name == null) {
-            System.out.println("EXCEPTIPSS");
             throw new Exception("First name, Last name, and password must be present.");
         }
         addUser.addUser(counter.incrementAndGet(), name, lastName, password);
