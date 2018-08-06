@@ -35,25 +35,23 @@ public class UserDao {
 
 
     public int loadUsers() {
-        File folder = new File("Resources/Users");
+        File folder = new File("/home/andreas/javaproject/EmployeeService/Resources/Users");
         System.out.println(folder.getAbsolutePath());
-        String[] listOfFiles = folder.list();
-        System.out.println(listOfFiles);
+        File[] listOfFiles = folder.listFiles();
+        System.out.println();
 
         userList = new ArrayList<>();
         if (listOfFiles != null) {
-            for (String x : listOfFiles) {
-                if (x.isEmpty()) {
-                    System.out.println(x);
-                    try {
-                        FileInputStream fileInputStream = new FileInputStream(x);
-                        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                        userList.add((User) objectInputStream.readObject());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
+            for (File x : listOfFiles) {
+                System.out.println(x);
+                try {
+                    FileInputStream fileInputStream = new FileInputStream(x);
+                    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                    userList.add((User) objectInputStream.readObject());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         }
