@@ -1,22 +1,27 @@
-package AddUser.Implementation;
+package UserImplementation.Implementation;
 
 import AddUserDao.UserDao;
 
-public class AddUser {
+public class UserImplementation {
 
     private long id;
     private User user;
     private String addUserState;
+    UserDao userDao;
 
-    public AddUser() {
+    /**
+     * Constructor for User Implementation
+     */
+    public UserImplementation() {
+        userDao = new UserDao();
     }
 
     public void addUser(long id, String name , String lastName, String password) throws Exception {
         user = new User(name, lastName, password, id);
         if (checkExistance(user)) {
-            throw new Exception("shiiiit");
+            throw new Exception("shiiiit, User exists");
         } else {
-            UserDao.saveUser(user);
+            userDao.addUser(user);
             addUserState= ReturnState.SUCCESS.getState();
             System.out.println(addUserState);
 
@@ -25,7 +30,7 @@ public class AddUser {
 
     private boolean checkExistance(User user) {
         //TODO add dao
-        return false;
+        return userDao.UserExistance(user);
     }
 
     public String resultState() {

@@ -1,4 +1,4 @@
-package AddUser.Implementation;
+package UserImplementation.Implementation;
 
 import AddUserDao.UserDao;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class UserController {
 
     private static final String template = "Hello, %s!";
-    AddUser addUser = new AddUser();
+    UserImplementation userImpl = new UserImplementation();
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/GetUsers")
@@ -22,17 +22,18 @@ public class UserController {
         return UserDao.userList;
     }
 
-    @RequestMapping("/AddUser")
+    @RequestMapping("/UserImplementation")
     public String AddUser(@RequestParam(value = "name") String name,
                        @RequestParam(value="lastName") String lastName,
                        @RequestParam(value="password") String password) throws Exception {
 
+        System.out.println("Enter AddUser");
         System.out.println(name+":"+lastName+":"+password);
         if (name == null) {
             throw new Exception("First name, Last name, and password must be present.");
         }
-        addUser.addUser(counter.incrementAndGet(), name, lastName, password);
-        return addUser.resultState();
+        userImpl.addUser(counter.incrementAndGet(), name, lastName, password);
+        return userImpl.resultState();
     }
 
     @RequestMapping("/AddUserTest")

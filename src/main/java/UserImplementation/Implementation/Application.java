@@ -1,4 +1,4 @@
-package AddUser.Implementation;
+package UserImplementation.Implementation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
