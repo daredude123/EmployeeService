@@ -1,6 +1,8 @@
 package UserImplementation.Implementation;
 
 import AddUserDao.UserDao;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,18 +24,26 @@ public class UserController {
         return UserDao.userList;
     }
 
-    @RequestMapping("/UserImplementation")
+    @RequestMapping("/AddUser")
     public String AddUser(@RequestParam(value = "name") String name,
                        @RequestParam(value="lastName") String lastName,
                        @RequestParam(value="password") String password) throws Exception {
 
         System.out.println("Enter AddUser");
         System.out.println(name+":"+lastName+":"+password);
-        if (name == null) {
+        if ((name == null || name.isEmpty()) || (lastName == null || lastName.isEmpty()) || (password == null || password.isEmpty())) {
             throw new Exception("First name, Last name, and password must be present.");
         }
-        userImpl.addUser(counter.incrementAndGet(), name, lastName, password);
-        return userImpl.resultState();
+        User user = userImpl.addUser(counter.incrementAndGet(), name, lastName, password);
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+
+        Gson gson = builder.create();
+
+        String returnString = gson.toJson(user);
+
+        return returnString;
     }
 
     @RequestMapping("/AddUserTest")

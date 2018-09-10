@@ -1,6 +1,6 @@
+UserImplementation/Implementation/UserController.class
+UserImplementation/Implementation/ReturnState.class
+UserImplementation/Implementation/Application.class
 AddUserDao/UserDao.class
-AddUser/Implementation/UserController.class
-AddUser/Implementation/Application.class
-AddUser/Implementation/User.class
-AddUser/Implementation/ReturnState.class
-AddUser/Implementation/AddUser.class
+UserImplementation/Implementation/UserImplementation.class
+UserImplementation/Implementation/User.class
