@@ -21,7 +21,7 @@ public class UserController {
 
     @RequestMapping("/GetUsers")
     public List<User> listUsers(){
-        return UserDao.userList;
+        return userImpl.getUserList();
     }
 
     @RequestMapping("/AddUser")

@@ -2,6 +2,8 @@ package UserImplementation.Implementation;
 
 import AddUserDao.UserDao;
 
+import java.util.List;
+
 public class UserImplementation {
 
     UserDao userDao;
@@ -27,5 +29,9 @@ public class UserImplementation {
     private boolean checkExistance(User user) {
         //TODO add dao
         return userDao.UserExistance(user);
+    }
+
+    public List<User> getUserList() {
+        return userDao.listUsers();
     }
 }
