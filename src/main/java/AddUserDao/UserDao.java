@@ -1,5 +1,6 @@
 package AddUserDao;
 
+import Exceptions.UserException;
 import UserImplementation.Implementation.ReturnState;
 import UserImplementation.Implementation.User;
 
@@ -28,5 +29,19 @@ public class UserDao {
 
     public boolean UserExistance(User user) {
         return userList.contains(user);
+    }
+
+    public User getUserFromId(String id) throws UserException {
+        User retval = null;
+        for (User user : userList) {
+            if (user.getId() == Long.parseLong(id)) {
+                retval = user;
+            }
+        }
+
+        if (retval == null) {
+            throw new UserException("User does not exist",UserException.UserExceptionCode.USER_UPDATE_ERROR);
+        }
+        return retval;
     }
 }

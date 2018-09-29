@@ -1,6 +1,7 @@
 package UserImplementation.Implementation;
 
 import AddUserDao.UserDao;
+import Exceptions.UserException;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class UserImplementation {
         userDao = new UserDao();
     }
 
-    public User addUser(long id, String name , String lastName, String password) throws Exception {
-        User user = new User(name, lastName, password, id);
+    public User addUser(long id, String name, String lastName, String password, String userName) throws Exception {
+        User user = new User(name, lastName, password, id,userName);
         if (checkExistance(user)) {
             throw new Exception("shiiiit, User exists");
         } else {
@@ -33,5 +34,10 @@ public class UserImplementation {
 
     public List<User> getUserList() {
         return userDao.listUsers();
+    }
+
+    public User updateUser(String id) throws UserException {
+        User userToUpdate = userDao.getUserFromId(id);
+        return userToUpdate;
     }
 }
